@@ -62,13 +62,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    if (!empty($_POST['image_links'])) {
-        $links = explode(',', $_POST['image_links']);
-        foreach ($links as $link) {
-            $link = trim($link);
-            if (filter_var($link, FILTER_VALIDATE_URL)) {
-                $imageNames[] = $link;
-            }
+    if (!empty($_POST['image_link'])) {
+        $link = trim($link);
+        if (filter_var($link, FILTER_VALIDATE_URL)) {
+            $imageNames[] = $link;
         }
     }
 
@@ -209,8 +206,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <label>Product Images <br></label>
                 <input type="file" name="images[]" multiple style="width: 400px;"><br>
 
-                <label>Or provide Image URL(s) (comma-separated) <br></label>
-                <input type="text" name="image_links" style="width: 400px;"><br>
+                <label>Or provide Image URL<br></label>
+                <input type="text" name="image_link" placeholder="https://burst.shopifycdn.com/photos/wireless-headphones.jpg" style="width: 400px;"><br>
 
                 <label>Product Name <br></label>
                 <input type="text" name="name" required style="width: 400px;" value="<?= $editProduct['name'] ?? '' ?>"><br>
@@ -231,7 +228,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </select><br>
 
                 <label>Product Price <br></label>
-                <input type="number" name="price" required min="0" style="width: 400px;" value="<?= $editProduct['price'] ?? '' ?>"><br>
+                <input type="number" name="price" required min="0" step="0.01" style="width: 400px;" value="<?= $editProduct['price'] ?? '' ?>"><br>
+
 
                 <label>Offer Price <br></label>
                 <input type="number" name="offer" required min="0" style="width: 400px;" value="<?= $editProduct['offer_price'] ?? '' ?>"><br>
