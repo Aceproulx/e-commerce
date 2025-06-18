@@ -195,8 +195,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="container">
         <div class="sidebar">
             <h2>QuickCart</h2>
-            <a href="#">Add Product</a>
-            <a href="productlist.php">Product List</a>
+            <div>Seller's Panel</div>
+
         </div>
 
         <div class="content">

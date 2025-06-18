@@ -200,7 +200,14 @@ include 'header.php';
                             <small class="text-muted"><?= $rating ?></small>
                         </div>
 
-                        <div class="fw-bold mb-2">$<?= number_format($row['price'], 2) ?></div>
+                        <?php if ($row['offer_price'] > 0 && $row['offer_price'] < $row['price']): ?>
+                            <div class="fw-bold mb-2">
+                                <span class="text-muted text-decoration-line-through">$<?= number_format($row['price'], 2) ?></span>
+                                <span class="text-danger ms-2">$<?= number_format($row['offer_price'], 2) ?></span>
+                            </div>
+                        <?php else: ?>
+                            <div class="fw-bold mb-2">$<?= number_format($row['price'], 2) ?></div>
+                        <?php endif; ?>
                         <a href="cart.php?action=add&id=<?= $row['id'] ?>" class="btn btn-outline-primary w-100">Add To Cart</a>
                     </div>
                 </div>
